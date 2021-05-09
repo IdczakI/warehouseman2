@@ -5,8 +5,18 @@ public class ItemDto {
     private Long id;
     private String name;
     private String description;
-    private Long quantityOnOnePallet;
     private Long availability;
+    private Long quantityOnOnePallet;
+    private Long pallets;
+
+
+    public Long getPallets() {
+        return pallets;
+    }
+
+    public void setPallets(Long pallets) {
+        this.pallets = pallets;
+    }
 
     public Long getId() {
         return id;

@@ -1,7 +1,7 @@
 package pl.idczak.warehouseman2.devivery;
 
 import pl.idczak.warehouseman2.item.Item;
-import pl.idczak.warehouseman2.shipper.Shipper;
+import pl.idczak.warehouseman2.transporter.Transporter;
 import pl.idczak.warehouseman2.warehouseman.Warehouseman;
 
 import javax.persistence.*;
@@ -17,15 +17,15 @@ public class Delivery {
     private Long id;
     private LocalDateTime date;
     private Long itemsQuantity;
-    private boolean export;
+    private boolean departure;
     @ManyToMany
     @JoinTable(name = "delivery_item",
     joinColumns = {@JoinColumn(name = "delivery_id", referencedColumnName = "id")},
     inverseJoinColumns = {@JoinColumn(name = "item_id", referencedColumnName = "id")})
     private List<Item> items = new ArrayList<>();
     @ManyToOne
-    @JoinColumn(name = "shipper_id")
-    private Shipper shipper;
+    @JoinColumn(name = "transporter_id")
+    private Transporter transporter;
     @ManyToOne
     @JoinColumn(name = "warehouseman_id")
     private Warehouseman warehouseman;
@@ -54,12 +54,12 @@ public class Delivery {
         this.itemsQuantity = itemsQuantity;
     }
 
-    public boolean isExport() {
-        return export;
+    public boolean isDeparture() {
+        return departure;
     }
 
-    public void setExport(boolean export) {
-        this.export = export;
+    public void setDeparture(boolean export) {
+        this.departure = export;
     }
 
     public List<Item> getItems() {
@@ -70,12 +70,12 @@ public class Delivery {
         this.items = items;
     }
 
-    public Shipper getShipper() {
-        return shipper;
+    public Transporter getShipper() {
+        return transporter;
     }
 
-    public void setShipper(Shipper shipper) {
-        this.shipper = shipper;
+    public void setShipper(Transporter transporter) {
+        this.transporter = transporter;
     }
 
     public Warehouseman getWarehouseman() {

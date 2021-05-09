@@ -16,7 +16,7 @@ public class Item {
     private String name;
     private String description;
     private Long quantityOnOnePallet;
-    private Long availability;
+    private Long pallets;
     @ManyToMany(mappedBy = "items")
     private List<Delivery> deliveries = new ArrayList<>();
 
@@ -52,12 +52,12 @@ public class Item {
         this.quantityOnOnePallet = quantityOnOnePallet;
     }
 
-    public Long getAvailability() {
-        return availability;
+    public Long getPallets() {
+        return pallets;
     }
 
-    public void setAvailability(Long availability) {
-        this.availability = availability;
+    public void setPallets(Long availability) {
+        this.pallets = availability;
     }
 
     public List<Delivery> getDeliveries() {

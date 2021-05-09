@@ -1,25 +1,13 @@
-package pl.idczak.warehouseman2.shipper;
+package pl.idczak.warehouseman2.transporter;
 
-import pl.idczak.warehouseman2.devivery.Delivery;
+public class TransporterDto {
 
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
-
-@Entity
-public class Shipper {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(unique = true)
     private String name;
     private String firstName;
     private String lastName;
     private String company;
     private String vehicleNumber;
-    @OneToMany(mappedBy = "shipper")
-    private List<Delivery> deliveries = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -67,13 +55,5 @@ public class Shipper {
 
     public void setVehicleNumber(String vehicleNumber) {
         this.vehicleNumber = vehicleNumber;
-    }
-
-    public List<Delivery> getDeliveries() {
-        return deliveries;
-    }
-
-    public void setDeliveries(List<Delivery> deliveries) {
-        this.deliveries = deliveries;
     }
 }
