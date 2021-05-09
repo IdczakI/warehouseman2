@@ -16,17 +16,17 @@
     </div>
 </div><br>
 <div class="text-center">
-    <a href="departures.html" type="button" class="btn btn-success" th:href="@{deliveries.html}">Delivery History</a>
-    <a href="departures.html" type="button" class="btn btn-danger" th:href="@{departures.html}">Departure History</a>
-    <a href="transporters.html" type="button" class="btn btn-warning" th:href="@{transporters.html}">Transporters</a>
-    <a href="warehousemen.html" type="button" class="btn btn-info" th:href="@{warehousemen.html}">Warehousemen</a>
+    <a href="departures.html" type="button" class="btn btn-success" th:href="@{/deliveries}">Delivery History</a>
+    <a href="departures.html" type="button" class="btn btn-danger" th:href="@{/departures}">Departure History</a>
+    <a href="transporters.html" type="button" class="btn btn-warning" th:href="@{/transporters}">Transporters</a>
+    <a href="warehousemen.html" type="button" class="btn btn-info" th:href="@{/warehousemen}">Warehousemen</a>
 </div><br>
 <div>
     <h3 class="text-center">Items in warehouse</h3>
 </div>
 <div class="col-4 offset-4">
     <form class="d-flex" action="#" th:action="@{/items}" method="get">
-        <input class="form-control me-3" type="search" placeholder="Search" aria-label="Search" name="name">
+        <input class="form-control me-3" type="search" placeholder="Search by name" aria-label="Search" name="name">
         <button class="btn btn-outline-dark" type="submit">Search</button>
     </form>
 </div>

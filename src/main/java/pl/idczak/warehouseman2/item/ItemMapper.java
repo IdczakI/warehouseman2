@@ -2,24 +2,24 @@ package pl.idczak.warehouseman2.item;
 
 public class ItemMapper {
 
-    static ItemDto toDto(Item item){
-        ItemDto itemDto = new ItemDto();
-        itemDto.setId(item.getId());
-        itemDto.setName(item.getName());
-        itemDto.setDescription(item.getDescription());
-        itemDto.setQuantityOnOnePallet(item.getQuantityOnOnePallet());
-        itemDto.setPallets(item.getPallets());
-        itemDto.setAvailability(item.getQuantityOnOnePallet() * item.getPallets());
-        return itemDto;
+    static ItemDto toDto(Item entity){
+        ItemDto dto = new ItemDto();
+        dto.setId(entity.getId());
+        dto.setName(entity.getName());
+        dto.setDescription(entity.getDescription());
+        dto.setQuantityOnOnePallet(entity.getQuantityOnOnePallet());
+        dto.setPallets(entity.getPallets());
+        dto.setAvailability(entity.getQuantityOnOnePallet() * entity.getPallets());
+        return dto;
     }
 
-    static Item toEntity(ItemDto itemDto){
-        Item itemEntity = new Item();
-        itemEntity.setId(itemDto.getId());
-        itemEntity.setName(itemDto.getName());
-        itemEntity.setDescription(itemDto.getDescription());
-        itemEntity.setQuantityOnOnePallet(itemDto.getQuantityOnOnePallet());
-        itemEntity.setPallets(itemDto.getPallets());
-        return itemEntity;
+    static Item toEntity(ItemDto dto){
+        Item entity = new Item();
+        entity.setId(dto.getId());
+        entity.setName(dto.getName());
+        entity.setDescription(dto.getDescription());
+        entity.setQuantityOnOnePallet(dto.getQuantityOnOnePallet());
+        entity.setPallets(dto.getPallets());
+        return entity;
     }
 }

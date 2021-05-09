@@ -70,11 +70,11 @@ public class Delivery {
         this.items = items;
     }
 
-    public Transporter getShipper() {
+    public Transporter getTransporter() {
         return transporter;
     }
 
-    public void setShipper(Transporter transporter) {
+    public void setTransporter(Transporter transporter) {
         this.transporter = transporter;
     }
 

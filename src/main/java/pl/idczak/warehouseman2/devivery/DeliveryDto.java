@@ -8,9 +8,9 @@ public class DeliveryDto {
     private Long id;
     private LocalDateTime date;
     private Long itemsQuantity;
-    private boolean export;
+    private boolean departure;
     private List<String> items;
-    private String shipper;
+    private String transporter;
     private String warehouseman;
 
     public Long getId() {
@@ -37,12 +37,12 @@ public class DeliveryDto {
         this.itemsQuantity = itemsQuantity;
     }
 
-    public boolean isExport() {
-        return export;
+    public boolean isDeparture() {
+        return departure;
     }
 
-    public void setExport(boolean export) {
-        this.export = export;
+    public void setDeparture(boolean departure) {
+        this.departure = departure;
     }
 
     public List<String> getItems() {
@@ -53,12 +53,12 @@ public class DeliveryDto {
         this.items = items;
     }
 
-    public String getShipper() {
-        return shipper;
+    public String getTransporter() {
+        return transporter;
     }
 
-    public void setShipper(String shipper) {
-        this.shipper = shipper;
+    public void setTransporter(String transporter) {
+        this.transporter = transporter;
     }
 
     public String getWarehouseman() {

@@ -14,61 +14,53 @@
             <h1 class="display-3">WAREHOUSEMAN 2.0</h1><br><br><br>
         </div>
     </div>
-</div><br>
+</div>
+<br>
 <div class="text-center">
-    <a href="items.html" type="button" class="btn btn-secondary" th:href="@{items.html}">Items</a>
-    <a href="deliveries.html" type="button" class="btn btn-success" th:href="@{deliveries.html}">Delivery History</a>
-    <a href="departures.html" type="button" class="btn btn-danger" th:href="@{departures.html}">Departure History</a>
-    <a href="transporters.html" type="button" class="btn btn-warning" th:href="@{transporters.html}">Transporters</a>
-</div><br>
+    <a href="items.html" type="button" class="btn btn-secondary" th:href="@{/items}">Items</a>
+    <a href="deliveries.html" type="button" class="btn btn-success" th:href="@{/deliveries}">Delivery History</a>
+    <a href="departures.html" type="button" class="btn btn-danger" th:href="@{/departures}">Departure History</a>
+    <a href="transporters.html" type="button" class="btn btn-warning" th:href="@{/transporters}">Transporters</a>
+</div>
+<br>
 <div>
-    <h3 class="text-center">Items in warehouse</h3>
+    <h3 class="text-center">Warehousemen</h3>
 </div>
 <div class="col-4 offset-4">
-    <form class="d-flex" action="#" th:action="@{/}" method="get">
-        <input class="form-control me-3" type="search" placeholder="Search" aria-label="Search" name="name">
+    <form class="d-flex" action="#" th:action="@{/warehousemen}" method="get">
+        <input class="form-control me-3" type="search" placeholder="Search" aria-label="Search" name="search">
         <button class="btn btn-outline-dark" type="submit">Search</button>
     </form>
 </div>
-<div class="col-8 offset-2 shadow p-3 mb-5 bg-body rounded">
+<div class="col-6 offset-3 shadow p-3 mb-5 bg-body rounded">
     <table class="table table-striped table-hover">
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Name/ID</th>
-            <th scope="col">Description</th>
-            <th scope="col">Quantity on 1 pallet</th>
-            <th scope="col">Pallets</th>
-            <th scope="col">Availability</th>
+            <th scope="col">ID</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
         </tr>
         </thead>
         <tbody th:remove="all-but-first">
-        <tr th:each="item : ${items}">
-            <th scope="row" th:text="${item.id}">1</th>
-            <td th:text="${item.name}">Item 1</td>
-            <td th:text="${item.description}">
-                this is the best description of item 1 this is the best description of item and item item
-            </td>
-            <td th:text="${item.quantityOnOnePallet}">50</td>
-            <td th:text="${item.pallets}">10</td>
-            <td th:text="${item.availability}">500</td>
+        <tr th:each="warehouseman : ${warehousemen}">
+            <th scope="row" th:text="${warehouseman.id}">1</th>
+            <td th:text="${warehouseman.name}">120Q</td>
+            <td th:text="${warehouseman.firstName}">John</td>
+            <td th:text="${warehouseman.lastName}">Example</td>
         </tr>
         <tr>
             <th scope="row">2</th>
-            <td>Item 2</td>
-            <td>this is the best description of item 2</td>
-            <td>100</td>
-            <td>10</td>
-            <td>1000</td>
+            <td>120E</td>
+            <td>Johny</td>
+            <td>Smith</td>
         </tr>
         <tr>
             <th scope="row">3</th>
-            <td>Item 3</td>
-            <td>this is the best description of item 3</td>
-            <td>200</td>
-            <td>20</td>
-            <td>4000</td>
-        </tr>
+            <td>000q</td>
+            <td>John</td>
+            <td>Perry</td>
+         </tr>
         </tbody>
     </table>
 </div>
