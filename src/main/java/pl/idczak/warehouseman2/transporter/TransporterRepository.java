@@ -17,4 +17,6 @@ public interface TransporterRepository extends JpaRepository<Transporter, Long> 
     List<Transporter> findAllByBase(@Param("search") String search);
 
     Optional<Transporter> findByName(String name);
+
+    Optional<Transporter> findByNameIgnoreCase(String name);
 }

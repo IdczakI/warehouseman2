@@ -20,7 +20,7 @@ public class DeliveryController {
             model.addAttribute("deliveries", deliveryService.findAllDeliveries());
         else
             model.addAttribute("deliveries", deliveryService.findAllDeliveriesByBase(search));
-        return "deliveries";
+        return "/delivery/deliveries";
     }
 
     @GetMapping("/departures")
@@ -29,6 +29,6 @@ public class DeliveryController {
             model.addAttribute("departures", deliveryService.findAllDepartures());
         else
             model.addAttribute("departures", deliveryService.findAllDeparturesByBase(search));
-        return "departures";
+        return "/departure/departures";
     }
 }

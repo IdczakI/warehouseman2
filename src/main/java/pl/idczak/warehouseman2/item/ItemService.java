@@ -31,9 +31,9 @@ public class ItemService {
     }
 
     ItemDto saveItem(ItemDto itemDto){
-        Optional<Item> itemByName = itemRepository.findByName(itemDto.getName());
+        Optional<Item> itemByName = itemRepository.findByNameIgnoreCase(itemDto.getName());
         itemByName.ifPresent(item -> {
-            throw new DuplicateException("An item with the name \"" + itemDto.getName() + "\" already exist.");
+            throw new DuplicateException("You cannot duplicate item names - " + itemDto.getName());
         });
         Item itemEntity = ItemMapper.toEntity(itemDto);
         Item savedItem = itemRepository.save(itemEntity);

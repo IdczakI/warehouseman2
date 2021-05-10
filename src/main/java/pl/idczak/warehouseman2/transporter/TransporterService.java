@@ -1,9 +1,11 @@
 package pl.idczak.warehouseman2.transporter;
 
 import org.springframework.stereotype.Service;
+import pl.idczak.warehouseman2.DuplicateException;
 import pl.idczak.warehouseman2.item.ItemMapper;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -27,5 +29,15 @@ public class TransporterService {
                 .stream()
                 .map(TransporterMapper::toDto)
                 .collect(Collectors.toList());
+    }
+
+    TransporterDto saveTransporter(TransporterDto transporterDto){
+        Optional<Transporter> transporterByName = transporterRepository.findByNameIgnoreCase(transporterDto.getName());
+        transporterByName.ifPresent(transporter -> {
+            throw new DuplicateException("You cannot duplicate transporter IDs - " + transporterDto.getName());
+        });
+        Transporter transporterEntity = TransporterMapper.toEntity(transporterDto);
+        Transporter savedTransporter = transporterRepository.save(transporterEntity);
+        return TransporterMapper.toDto(savedTransporter);
     }
 }

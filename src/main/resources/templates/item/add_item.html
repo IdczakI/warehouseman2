@@ -17,32 +17,35 @@
 </div>
 <br>
 <div class="text-center">
-    <a href="../item/items.html" type="button" class="btn btn-success" th:href="@{/items}">Return to Items List</a>
+    <a href="../item/items.html" type="button" class="btn btn-primary" th:href="@{/items}">Return to Items List</a>
 </div>
 <br>
 <div>
-    <h3 class="text-center">Add Item</h3>
+    <h3 class="text-center">Add Item to Database</h3>
 </div>
 <form class="d-flex" action="#" th:action="@{/items}" method="post">
     <div class="col-4 offset-4 shadow p-3 mb-5 bg-body rounded">
         <div class="input-group mb-3">
             <div class="col-md-8">
                 <label for="name">Name / ID</label>
-                <input type="text" class="form-control"name="name" id="name">
+                <input type="text" class="form-control"name="name" id="name" required>
             </div>
             <div>
                 <label for="quantity">Quantity on 1 pallet</label>
                 <input type="number" min="1" step="1" class="form-control"
-                       name="quantityOnOnePallet" value="1" id="quantity">
+                       name="quantityOnOnePallet" value="1" id="quantity" required>
             </div>
         </div>
         <div class="mb-3 ">
             <label for="description">Description</label>
-            <textarea class="form-control" id="description" rows="4" name="description"></textarea>
+            <textarea class="form-control" id="description" rows="4" name="description" required></textarea>
         </div>
         <div class="col-auto text-center">
-            <button type="submit" class="btn btn-primary mb-3">Save item</button>
+            <button type="submit" class="btn btn-success mb-3">Save Item</button>
         </div>
     </div>
 </form>
+</body>
+</html>
+
 

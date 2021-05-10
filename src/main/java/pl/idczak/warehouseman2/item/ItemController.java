@@ -27,7 +27,7 @@ public class ItemController {
     @PostMapping("")
     public String save(@ModelAttribute ItemDto itemDto, Model model) {
         try {
-            itemService.saveItem(itemDto);
+            ItemDto dto = itemService.saveItem(itemDto);
         }catch (DuplicateException e){
             model.addAttribute("message", e.getMessage());
         }

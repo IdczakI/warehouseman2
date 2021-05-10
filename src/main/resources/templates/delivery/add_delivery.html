@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Take Delivery</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <link href="../../static/css/main.css" th:href="@{css/main.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="jumbotron home-jumbo"><br><br><br><br><br><br><br>
+        <div class="container text-center text-white text-bold jumbo-container">
+            <h1 class="display-3">WAREHOUSEMAN 2.0</h1><br><br><br>
+        </div>
+    </div>
+</div>
+<br>
+<div class="text-center">
+    <a href="../transporter/transporters.html" type="button" class="btn btn-success"
+       th:href="@{/items}">Return Delivery History</a>
+</div>
+<br>
+<div>
+    <h3 class="text-center">Take Delivery</h3>
+</div>
+<form class="row g-3 col-4 offset-4 shadow p-3 mb-5 bg-body rounded"
+      novalidate action="#" th:action="@{/transporters}" method="post">
+    <div class="col-md-4">
+        <label for="date" class="form-label">Date</label>
+        <input type="date" class="form-control" id="date" name="date" required>
+    </div>
+    <div class="col-md-4">
+        <label for="item" class="form-label">Item</label>
+        <input type="text" class="form-control" id="item" name="item" required>
+    </div>
+    <div class="col-md-4">
+        <label for="transpoter" class="form-label">Transporter</label>
+        <input type="text" class="form-control" id="transpoter" aria-describedby="inputGroupPrepend"
+               name="transporter" required>
+    </div>
+    <div class="col-md-8">
+        <label for="warehouseman" class="form-label">Warehouseman</label>
+        <input type="text" class="form-control" id="warehouseman" name="warehouseman" required>
+    </div>
+
+    <div class="col-md-4">
+        <label for="pallets" class="form-label">Pallets</label>
+        <input type="number" min="1" step="1" class="form-control" id="pallets" name="palletsQuantity" required>
+    </div>
+    <div class="col-12 text-center">
+        <button class="btn btn-primary" type="submit">Take Delivery</button>
+    </div>
+</form>
+</body>
+</html>
+
+
