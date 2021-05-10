@@ -13,18 +13,11 @@ values (1, '110A', 'John', 'Example'),
        (2, '120A', 'Maria', 'Smith'),
        (3, '130A', 'Daniel', 'Beer');
 
-insert into delivery(id, date, items_quantity, departure, transporter_id, warehouseman_id)
-values (1, '2020-02-02 16:00:00', 1000, false, 1, 1),
-       (2, '2020-03-03 17:30:00', 1000, false, 2, 2),
-       (3, '2020-04-04 09:00:30', 1500, false, 3, 3),
-       (4, '2020-05-05 10:10:10', 500, true, 2, 3),
-       (5, '2020-06-06 11:00:00', 500, true, 3, 1),
-       (6, '2020-07-07 12:12:00', 750, true, 1, 2);
+insert into delivery(id, date, pallets_quantity, departure, item_id, transporter_id, warehouseman_id)
+values (1, '2020-02-02 16:00:00', 20, false, 1, 1, 1),
+       (2, '2020-03-03 17:30:00', 10, false, 2, 2, 2),
+       (3, '2020-04-04 09:00:30', 15, false, 3, 3, 3),
+       (4, '2020-05-05 10:10:10', 20, true, 1, 2, 3),
+       (5, '2020-06-06 11:00:00', 12, true, 2, 3, 1),
+       (6, '2020-07-07 12:12:00', 12, true, 3, 1, 2);
 
-insert into delivery_item(delivery_id, item_id)
-values (1, 1),
-       (2, 2),
-       (3, 3),
-       (4, 1),
-       (5, 2),
-       (6, 3);

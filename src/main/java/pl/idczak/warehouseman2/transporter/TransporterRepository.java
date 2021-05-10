@@ -16,5 +16,5 @@ public interface TransporterRepository extends JpaRepository<Transporter, Long> 
             "or lower(a.vehicleNumber) like lower(concat('%',:search,'%'))")
     List<Transporter> findAllByBase(@Param("search") String search);
 
-    Optional<Transporter> findAllByName(String name);
+    Optional<Transporter> findByName(String name);
 }

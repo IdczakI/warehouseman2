@@ -15,7 +15,7 @@ public class WarehousemanController {
     }
 
     @GetMapping("/warehousemen")
-    public String findItems(Model model, @RequestParam(required = false) String search) {
+    public String findWarehousemen(Model model, @RequestParam(required = false) String search) {
         if (search == null || "".equals(search))
             model.addAttribute("warehousemen", warehousemanService.findAll());
         else

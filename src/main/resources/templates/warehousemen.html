@@ -17,7 +17,7 @@
 </div>
 <br>
 <div class="text-center">
-    <a href="items.html" type="button" class="btn btn-secondary" th:href="@{/items}">Items</a>
+    <a href="item/items.html" type="button" class="btn btn-secondary" th:href="@{/items}">Items</a>
     <a href="deliveries.html" type="button" class="btn btn-success" th:href="@{/deliveries}">Delivery History</a>
     <a href="departures.html" type="button" class="btn btn-danger" th:href="@{/departures}">Departure History</a>
     <a href="transporters.html" type="button" class="btn btn-warning" th:href="@{/transporters}">Transporters</a>
@@ -43,11 +43,11 @@
         </tr>
         </thead>
         <tbody th:remove="all-but-first">
-        <tr th:each="warehouseman : ${warehousemen}">
-            <th scope="row" th:text="${warehouseman.id}">1</th>
-            <td th:text="${warehouseman.name}">120Q</td>
-            <td th:text="${warehouseman.firstName}">John</td>
-            <td th:text="${warehouseman.lastName}">Example</td>
+        <tr th:each="warehouseman : ${warehousemen}" th:object="${warehouseman}">
+            <th scope="row" th:text="*{id}">1</th>
+            <td th:text="*{name}">120Q</td>
+            <td th:text="*{firstName}">John</td>
+            <td th:text="*{lastName}">Example</td>
         </tr>
         <tr>
             <th scope="row">2</th>

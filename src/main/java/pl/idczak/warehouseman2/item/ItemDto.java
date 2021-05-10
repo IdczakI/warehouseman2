@@ -4,9 +4,9 @@ public class ItemDto {
 
     private Long id;
     private String name;
+    private Long quantityOnOnePallet;
     private String description;
     private Long availability;
-    private Long quantityOnOnePallet;
     private Long pallets;
 
 

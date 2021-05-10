@@ -16,7 +16,7 @@
     </div>
 </div><br>
 <div class="text-center">
-    <a href="items.html" type="button" class="btn btn-primary" th:href="@{/items}">Items</a>
+    <a href="item/items.html" type="button" class="btn btn-primary" th:href="@{/items}">Items</a>
     <a href="deliveries.html" type="button" class="btn btn-success" th:href="@{/deliveries}">Delivery History</a>
     <a href="departures.html" type="button" class="btn btn-danger" th:href="@{/departures}">Departure History</a>
     <a href="warehousemen.html" type="button" class="btn btn-info" th:href="@{/warehousemen}">Warehousemen</a>
@@ -43,13 +43,13 @@
         </tr>
         </thead>
         <tbody th:remove="all-but-first">
-        <tr th:each="transporter : ${transporters}">
-            <th scope="row" th:text="${transporter.id}">1</th>
-            <td th:text="${transporter.name}">Tr 1</td>
-            <td th:text="${transporter.firstName}">John</td>
-            <td th:text="${transporter.lastName}">Smith</td>
-            <td th:text="${transporter.company}">Company 1</td>
-            <td th:text="${transporter.vehicleNumber}">XX 5000</td>
+        <tr th:each="transporter : ${transporters}" th:object="${transporter}">
+            <th scope="row" th:text="*{id}">1</th>
+            <td th:text="*{name}">Tr 1</td>
+            <td th:text="*{firstName}">John</td>
+            <td th:text="*{lastName}">Smith</td>
+            <td th:text="*{company}">Company 1</td>
+            <td th:text="*{vehicleNumber}">XX 5000</td>
         </tr>
         <tr>
             <th scope="row">2</th>

@@ -15,11 +15,10 @@ public class ItemMapper {
 
     static Item toEntity(ItemDto dto){
         Item entity = new Item();
-        entity.setId(dto.getId());
         entity.setName(dto.getName());
         entity.setDescription(dto.getDescription());
         entity.setQuantityOnOnePallet(dto.getQuantityOnOnePallet());
-        entity.setPallets(dto.getPallets());
+        entity.setPallets(0L);
         return entity;
     }
 }

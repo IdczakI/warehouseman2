@@ -14,5 +14,5 @@ public interface WarehousemanRepository extends JpaRepository<Warehouseman, Long
             "or lower(a.lastName) like lower(concat('%',:search,'%'))")
     List<Warehouseman> findAllByBase(@Param("search") String search);
 
-    Optional<Warehouseman> findAllByName(String name);
+    Optional<Warehouseman> findByName(String name);
 }

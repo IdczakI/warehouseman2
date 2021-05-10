@@ -5,7 +5,7 @@
     <title>Items</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
-    <link href="../static/css/main.css" th:href="@{css/main.css}" rel="stylesheet">
+    <link href="../../static/css/main.css" th:href="@{css/main.css}" rel="stylesheet">
 </head>
 <body>
 <div class="container">
@@ -16,11 +16,14 @@
     </div>
 </div><br>
 <div class="text-center">
-    <a href="departures.html" type="button" class="btn btn-success" th:href="@{/deliveries}">Delivery History</a>
-    <a href="departures.html" type="button" class="btn btn-danger" th:href="@{/departures}">Departure History</a>
-    <a href="transporters.html" type="button" class="btn btn-warning" th:href="@{/transporters}">Transporters</a>
-    <a href="warehousemen.html" type="button" class="btn btn-info" th:href="@{/warehousemen}">Warehousemen</a>
-</div><br>
+    <a href="../departures.html" type="button" class="btn btn-success" th:href="@{/deliveries}">Delivery History</a>
+    <a href="../departures.html" type="button" class="btn btn-danger" th:href="@{/departures}">Departure History</a>
+    <a href="../transporters.html" type="button" class="btn btn-warning" th:href="@{/transporters}">Transporters</a>
+    <a href="../warehousemen.html" type="button" class="btn btn-info" th:href="@{/warehousemen}">Warehousemen</a>
+</div>
+<div class="text-danger">
+    <p class="text-center" th:text="${message}"></p>
+</div>
 <div>
     <h3 class="text-center">Items in warehouse</h3>
 </div>
@@ -43,15 +46,15 @@
         </tr>
         </thead>
         <tbody th:remove="all-but-first">
-        <tr th:each="item : ${items}">
-            <th scope="row" th:text="${item.id}">1</th>
-            <td th:text="${item.name}">Item 1</td>
-            <td th:text="${item.description}">
+        <tr th:each="item : ${items}" th:object="${item}">
+            <th scope="row" th:text="*{id}">1</th>
+            <td th:text="*{name}">Item 1</td>
+            <td th:text="*{description}">
                 this is the best description of item 1 this is the best description of item and item item
             </td>
-            <td th:text="${item.quantityOnOnePallet}">50</td>
-            <td th:text="${item.pallets}">10</td>
-            <td th:text="${item.availability}">500</td>
+            <td th:text="*{quantityOnOnePallet}">50</td>
+            <td th:text="*{pallets}">10</td>
+            <td th:text="*{availability}">500</td>
         </tr>
         <tr>
             <th scope="row">2</th>
@@ -71,6 +74,9 @@
         </tr>
         </tbody>
     </table>
+</div>
+<div class="d-grid gap-2 col-2 mx-auto">
+    <a href="../item/add_item.html" type="button" class="btn btn-primary" th:href="@{/items/add}">Add Item</a>
 </div>
 </body>
 </html>

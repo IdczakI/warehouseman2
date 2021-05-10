@@ -1,15 +1,15 @@
 package pl.idczak.warehouseman2.devivery;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 public class DeliveryDto {
 
     private Long id;
     private LocalDateTime date;
+    private Long palletsQuantity;
     private Long itemsQuantity;
     private boolean departure;
-    private List<String> items;
+    private String item;
     private String transporter;
     private String warehouseman;
 
@@ -29,6 +29,14 @@ public class DeliveryDto {
         this.date = date;
     }
 
+    public Long getPalletsQuantity() {
+        return palletsQuantity;
+    }
+
+    public void setPalletsQuantity(Long palletsQuantity) {
+        this.palletsQuantity = palletsQuantity;
+    }
+
     public Long getItemsQuantity() {
         return itemsQuantity;
     }
@@ -45,12 +53,12 @@ public class DeliveryDto {
         this.departure = departure;
     }
 
-    public List<String> getItems() {
-        return items;
+    public String getItem() {
+        return item;
     }
 
-    public void setItems(List<String> items) {
-        this.items = items;
+    public void setItem(String item) {
+        this.item = item;
     }
 
     public String getTransporter() {

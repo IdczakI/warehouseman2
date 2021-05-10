@@ -15,7 +15,7 @@ public class TransporterController {
     }
 
     @GetMapping("/transporters")
-    public String findItems(Model model, @RequestParam(required = false) String search) {
+    public String findTransporters(Model model, @RequestParam(required = false) String search) {
         if (search == null || "".equals(search))
             model.addAttribute("transporters", transporterService.findAll());
         else

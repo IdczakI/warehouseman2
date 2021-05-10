@@ -6,8 +6,6 @@ import pl.idczak.warehouseman2.warehouseman.Warehouseman;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class Delivery {
@@ -16,13 +14,11 @@ public class Delivery {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDateTime date;
-    private Long itemsQuantity;
+    private Long palletsQuantity;
     private boolean departure;
-    @ManyToMany
-    @JoinTable(name = "delivery_item",
-    joinColumns = {@JoinColumn(name = "delivery_id", referencedColumnName = "id")},
-    inverseJoinColumns = {@JoinColumn(name = "item_id", referencedColumnName = "id")})
-    private List<Item> items = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "item_id")
+    private Item item;
     @ManyToOne
     @JoinColumn(name = "transporter_id")
     private Transporter transporter;
@@ -46,12 +42,12 @@ public class Delivery {
         this.date = date;
     }
 
-    public Long getItemsQuantity() {
-        return itemsQuantity;
+    public Long getPalletsQuantity() {
+        return palletsQuantity;
     }
 
-    public void setItemsQuantity(Long itemsQuantity) {
-        this.itemsQuantity = itemsQuantity;
+    public void setPalletsQuantity(Long itemsQuantity) {
+        this.palletsQuantity = itemsQuantity;
     }
 
     public boolean isDeparture() {
@@ -62,12 +58,12 @@ public class Delivery {
         this.departure = export;
     }
 
-    public List<Item> getItems() {
-        return items;
+    public Item getItem() {
+        return item;
     }
 
-    public void setItems(List<Item> items) {
-        this.items = items;
+    public void setItem(Item item) {
+        this.item = item;
     }
 
     public Transporter getTransporter() {

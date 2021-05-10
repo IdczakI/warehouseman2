@@ -17,7 +17,7 @@ public class Item {
     private String description;
     private Long quantityOnOnePallet;
     private Long pallets;
-    @ManyToMany(mappedBy = "items")
+    @OneToMany(mappedBy = "item")
     private List<Delivery> deliveries = new ArrayList<>();
 
     public Long getId() {

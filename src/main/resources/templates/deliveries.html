@@ -17,10 +17,10 @@
 </div>
 <br>
 <div class="text-center">
-    <a href="items.html" type="button" class="btn btn-secondary" th:href="@{items.html}">Items</a>
-    <a href="departures.html" type="button" class="btn btn-danger" th:href="@{departures.html}">Departure History</a>
-    <a href="transporters.html" type="button" class="btn btn-warning" th:href="@{transporters.html}">Transporters</a>
-    <a href="warehousemen.html" type="button" class="btn btn-info" th:href="@{warehousemen.html}">Warehousemen</a>
+    <a href="item/items.html" type="button" class="btn btn-primary" th:href="@{/items}">Items</a>
+    <a href="departures.html" type="button" class="btn btn-danger" th:href="@{/departures}">Departure History</a>
+    <a href="transporters.html" type="button" class="btn btn-warning" th:href="@{/transporters}">Transporters</a>
+    <a href="warehousemen.html" type="button" class="btn btn-info" th:href="@{/warehousemen}">Warehousemen</a>
 </div>
 <br>
 <div>
@@ -28,7 +28,7 @@
 </div>
 <div class="col-4 offset-4">
     <form class="d-flex" action="#" th:action="@{/deliveries}" method="get">
-        <input class="form-control me-3" type="search" placeholder="Search" aria-label="Search" name="name">
+        <input class="form-control me-3" type="search" placeholder="Search" aria-label="Search" name="search">
         <button class="btn btn-outline-dark" type="submit">Search</button>
     </form>
 </div>
@@ -37,39 +37,41 @@
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Name/ID</th>
-            <th scope="col">Description</th>
-            <th scope="col">Quantity on 1 pallet</th>
+            <th scope="col">Date</th>
+            <th scope="col">Item</th>
+            <th scope="col">Quantity</th>
             <th scope="col">Pallets</th>
-            <th scope="col">Availability</th>
+            <th scope="col">Transporter</th>
+            <th scope="col">Warehouseman</th>
         </tr>
         </thead>
         <tbody th:remove="all-but-first">
-        <tr th:each="item : ${items}">
-            <th scope="row" th:text="${item.id}">1</th>
-            <td th:text="${item.name}">Item 1</td>
-            <td th:text="${item.description}">
-                this is the best description of item 1 this is the best description of item and item item
-            </td>
-            <td th:text="${item.quantityOnOnePallet}">50</td>
-            <td th:text="${item.pallets}">10</td>
-            <td th:text="${item.availability}">500</td>
+        <tr th:each="delivery, state : ${deliveries}" th:object="${delivery}">
+            <th scope="row" th:text="${state.count}">1</th>
+            <td th:text="*{date}">2020-02-02T16:00</td>
+            <td th:text="*{item}">Item 1</td>
+            <td th:text="*{itemsQuantity}">500</td>
+            <td th:text="*{palletsQuantity}">10</td>
+            <td th:text="*{transporter}">ZZ</td>
+            <td th:text="*{warehouseman}">XXX</td>
         </tr>
         <tr>
             <th scope="row">2</th>
+            <td>2020-02-02T16:00</td>
             <td>Item 2</td>
-            <td>this is the best description of item 2</td>
             <td>100</td>
             <td>10</td>
-            <td>1000</td>
+            <td>ZZ</td>
+            <td>ZZ</td>
         </tr>
         <tr>
             <th scope="row">3</th>
+            <td>2020-02-02T16:00</td>
             <td>Item 3</td>
-            <td>this is the best description of item 3</td>
-            <td>200</td>
-            <td>20</td>
-            <td>4000</td>
+            <td>100</td>
+            <td>10</td>
+            <td>ZZ</td>
+            <td>ZZ</td>
         </tr>
         </tbody>
     </table>
