@@ -8,6 +8,7 @@ import pl.idczak.warehouseman2.transporter.TransporterRepository;
 import pl.idczak.warehouseman2.warehouseman.Warehouseman;
 import pl.idczak.warehouseman2.warehouseman.WarehousemanRepository;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -31,11 +32,10 @@ public class DeliveryMapper {
         dto.setDate(entity.getDate());
         dto.setPalletsQuantity(entity.getPalletsQuantity());
         dto.setDeparture(entity.isDeparture());
-        Optional<Item> item = itemRepository.findById(entity.getItem().getId());
-        item.ifPresent(i -> {
-            dto.setItemsQuantity(entity.getPalletsQuantity() * i.getQuantityOnOnePallet());
+        if (entity.getItem() != null){
+            dto.setItemsQuantity(entity.getPalletsQuantity() * entity.getItem().getQuantityOnOnePallet());
             dto.setItem(entity.getItem().getName());
-        });
+        }
         if (entity.getTransporter() != null)
             dto.setTransporter(entity.getTransporter().getName());
         if (entity.getWarehouseman() != null)
@@ -46,7 +46,7 @@ public class DeliveryMapper {
     Delivery toEntity(DeliveryDto dto) {
         Delivery entity = new Delivery();
         entity.setId(dto.getId());
-        entity.setDate(dto.getDate());
+        entity.setDate(LocalDateTime.now());
         entity.setPalletsQuantity(dto.getPalletsQuantity());
         entity.setDeparture(dto.isDeparture());
         Optional<Transporter> transporter = transporterRepository.findByName(dto.getTransporter());

@@ -1,6 +1,7 @@
 package pl.idczak.warehouseman2.devivery;
 
 import org.springframework.stereotype.Service;
+import pl.idczak.warehouseman2.IncorrectDataException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,9 +39,17 @@ public class DeliveryService {
     }
 
     List<DeliveryDto> findAllDeparturesByBase(String search) {
-        return deliveryRepository.findAllByBase(search,true)
+        return deliveryRepository.findAllByBase(search, true)
                 .stream()
                 .map(deliveryMapper::toDto)
                 .collect(Collectors.toList());
+    }
+
+    DeliveryDto saveDelivery(DeliveryDto deliveryDto){
+//        if (deliveryDto.getPalletsQuantity() == null)
+//            throw new IncorrectDataException("You must fill all required fields");
+        Delivery deliveryEntity = deliveryMapper.toEntity(deliveryDto);
+        Delivery savedDelivery = deliveryRepository.save(deliveryEntity);
+        return deliveryMapper.toDto(savedDelivery);
     }
 }

@@ -14,7 +14,7 @@ public class WarehousemanService {
         this.warehousemanRepository = warehousemanRepository;
     }
 
-    List<WarehousemanDto> findAll(){
+   public List<WarehousemanDto> findAll(){
         return warehousemanRepository.findAll()
                 .stream()
                 .map(WarehousemanMapper::toDto)

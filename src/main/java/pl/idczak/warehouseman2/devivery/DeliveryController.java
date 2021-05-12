@@ -3,15 +3,28 @@ package pl.idczak.warehouseman2.devivery;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import pl.idczak.warehouseman2.IncorrectDataException;
+import pl.idczak.warehouseman2.item.ItemService;
+import pl.idczak.warehouseman2.transporter.TransporterService;
+import pl.idczak.warehouseman2.warehouseman.WarehousemanService;
 
 @Controller
 public class DeliveryController {
 
     private DeliveryService deliveryService;
+    private ItemService itemService;
+    private WarehousemanService warehousemanService;
+    private TransporterService transporterService;
 
-    public DeliveryController(DeliveryService deliveryService) {
+    public DeliveryController(DeliveryService deliveryService, ItemService itemService,
+                              WarehousemanService warehousemanService, TransporterService transporterService) {
         this.deliveryService = deliveryService;
+        this.itemService = itemService;
+        this.warehousemanService = warehousemanService;
+        this.transporterService = transporterService;
     }
 
     @GetMapping("/deliveries")
@@ -20,7 +33,7 @@ public class DeliveryController {
             model.addAttribute("deliveries", deliveryService.findAllDeliveries());
         else
             model.addAttribute("deliveries", deliveryService.findAllDeliveriesByBase(search));
-        return "/delivery/deliveries";
+        return "delivery/deliveries";
     }
 
     @GetMapping("/departures")
@@ -29,6 +42,25 @@ public class DeliveryController {
             model.addAttribute("departures", deliveryService.findAllDepartures());
         else
             model.addAttribute("departures", deliveryService.findAllDeparturesByBase(search));
-        return "/departure/departures";
+        return "departure/departures";
+    }
+
+    @GetMapping("/deliveries/take")
+    public String mapTakeDeliveryPage(Model model){
+        model.addAttribute("warehousemen", warehousemanService.findAll());
+        model.addAttribute("items", itemService.findAll());
+        model.addAttribute("transporters", transporterService.findAll());
+        return "delivery/take_delivery";
+    }
+
+    @PostMapping("deliveries")
+    public String save(@ModelAttribute DeliveryDto deliveryDto, Model model){
+        try {
+            DeliveryDto dto = deliveryService.saveDelivery(deliveryDto);
+        }catch (IncorrectDataException e){
+            model.addAttribute("message", e.getMessage());
+        }
+        model.addAttribute("deliveries", deliveryService.findAllDeliveries());
+        return "delivery/deliveries";
     }
 }

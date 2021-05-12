@@ -3,7 +3,9 @@ package pl.idczak.warehouseman2.transporter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pl.idczak.warehouseman2.DuplicateException;
+import pl.idczak.warehouseman2.IncorrectDataException;
+
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/transporters")
@@ -29,11 +31,29 @@ public class TransporterController {
         return "transporter/add_transporter";
     }
 
+    @GetMapping("/edit/{id}")
+    public String findTransporterToEdit(@PathVariable Long id, Model model){
+        Optional<TransporterDto> transporterDto = transporterService.findById(id);
+        transporterDto.ifPresent(t -> model.addAttribute("transporter", t));
+        return "transporter/edit_transporter";
+    }
+
     @PostMapping("")
     public String save(@ModelAttribute TransporterDto transporterDto, Model model){
         try{
             TransporterDto dto = transporterService.saveTransporter(transporterDto);
-        }catch (DuplicateException e){
+        }catch (IncorrectDataException e){
+            model.addAttribute("message", e.getMessage());
+        }
+        model.addAttribute("transporters", transporterService.findAll());
+        return "transporter/transporters";
+    }
+
+    @PostMapping("/edit")
+    public String edit(@ModelAttribute TransporterDto transporterDto, Model model){
+        try{
+            TransporterDto dto = transporterService.editTransporter(transporterDto);
+        }catch (IncorrectDataException e){
             model.addAttribute("message", e.getMessage());
         }
         model.addAttribute("transporters", transporterService.findAll());

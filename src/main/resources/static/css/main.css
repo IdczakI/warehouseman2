@@ -1,10 +1,10 @@
 .home-jumbo{
-    background: url("../img/background.jpg") center;
+    background: url("../img/warehouse-back20.jpg") center;
 }
 
-/*.home-jumbo{*/
-/*    background-image:  url("../img/background.jpg");*/
-/*    background-size: cover;*/
-/*    background-repeat: no-repeat;*/
-/*}*/
+.home-jumbo{
+    background-image:  url("../img/warehouse-back20.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 

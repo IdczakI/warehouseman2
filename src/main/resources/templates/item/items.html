@@ -43,6 +43,7 @@
             <th scope="col">Quantity on 1 pallet</th>
             <th scope="col">Pallets</th>
             <th scope="col">Availability</th>
+            <th scope="col">Action</th>
         </tr>
         </thead>
         <tbody th:remove="all-but-first">
@@ -55,6 +56,10 @@
             <td th:text="*{quantityOnOnePallet}">50</td>
             <td th:text="*{pallets}">10</td>
             <td th:text="*{availability}">500</td>
+            <td>
+                <a href="../item/edit_item.html" type="button" class="btn btn-primary"
+                   th:href="@{|/items/edit/*{id}|}">Edit</a>
+            </td>
         </tr>
         <tr>
             <th scope="row">2</th>
@@ -63,6 +68,9 @@
             <td>100</td>
             <td>10</td>
             <td>1000</td>
+            <td>
+                <a href="../item/edit_item.html" type="button" class="btn btn-primary">Edit</a>
+            </td>
         </tr>
         <tr>
             <th scope="row">3</th>
@@ -71,6 +79,9 @@
             <td>200</td>
             <td>20</td>
             <td>4000</td>
+            <td>
+                <a href="../item/edit_item.html" type="button" class="btn btn-primary">Edit</a>
+            </td>
         </tr>
         </tbody>
     </table>

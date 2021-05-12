@@ -43,6 +43,7 @@
             <th scope="col">Last Name</th>
             <th scope="col">Company</th>
             <th scope="col">Vehicle Number</th>
+            <th scope="col">Action</th>
         </tr>
         </thead>
         <tbody th:remove="all-but-first">
@@ -53,6 +54,10 @@
             <td th:text="*{lastName}">Smith</td>
             <td th:text="*{company}">Company 1</td>
             <td th:text="*{vehicleNumber}">XX 5000</td>
+            <td>
+                <a href="../transporter/edit_transporter.html" type="button" class="btn btn-warning"
+                   th:href="@{|/transporters/edit/*{id}|}">Edit</a>
+            </td>
         </tr>
         <tr>
             <th scope="row">2</th>
@@ -61,6 +66,9 @@
             <td>Johny</td>
             <td>Company 2</td>
             <td>XX XXXXX</td>
+            <td>
+                <a href="../transporter/edit_transporter.html" type="button" class="btn btn-warning">Edit</a>
+            </td>
         </tr>
         <tr>
             <th scope="row">3</th>
@@ -69,6 +77,9 @@
             <td>John</td>
             <td>Company 3</td>
             <td>XX XXXXX</td>
+            <td>
+                <a href="../transporter/edit_transporter.html" type="button" class="btn btn-warning">Edit</a>
+            </td>
         </tr>
         </tbody>
     </table>
