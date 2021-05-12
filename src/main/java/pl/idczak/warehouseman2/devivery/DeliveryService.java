@@ -45,9 +45,9 @@ public class DeliveryService {
                 .collect(Collectors.toList());
     }
 
-    DeliveryDto saveDelivery(DeliveryDto deliveryDto){
-//        if (deliveryDto.getPalletsQuantity() == null)
-//            throw new IncorrectDataException("You must fill all required fields");
+    DeliveryDto save(DeliveryDto deliveryDto){
+        if (deliveryDto.getPalletsQuantity() == null || deliveryDto.getPalletsQuantity() <= 0)
+            throw new IncorrectDataException("Incorrect Quantity of Pallets");
         Delivery deliveryEntity = deliveryMapper.toEntity(deliveryDto);
         Delivery savedDelivery = deliveryRepository.save(deliveryEntity);
         return deliveryMapper.toDto(savedDelivery);

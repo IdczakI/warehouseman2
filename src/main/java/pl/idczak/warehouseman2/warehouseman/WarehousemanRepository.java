@@ -15,4 +15,6 @@ public interface WarehousemanRepository extends JpaRepository<Warehouseman, Long
     List<Warehouseman> findAllByBase(@Param("search") String search);
 
     Optional<Warehouseman> findByName(String name);
+
+    List<Warehouseman> findAllById(Long id);
 }

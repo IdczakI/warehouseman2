@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.idczak.warehouseman2.IncorrectDataException;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -57,6 +58,16 @@ public class TransporterController {
             model.addAttribute("message", e.getMessage());
         }
         model.addAttribute("transporters", transporterService.findAll());
+        return "transporter/transporters";
+    }
+
+    @GetMapping("/{id}")
+    public String takeALook(@PathVariable Long id, Model model){
+        List<TransporterDto> dtoList = transporterService.findAllById(id);
+        if (dtoList.isEmpty())
+            model.addAttribute("message", "There is no such Transporter");
+        else
+            model.addAttribute("transporters", dtoList);
         return "transporter/transporters";
     }
 }

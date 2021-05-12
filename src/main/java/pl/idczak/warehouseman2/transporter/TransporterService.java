@@ -16,6 +16,13 @@ public class TransporterService {
         this.transporterRepository = transporterRepository;
     }
 
+    List<TransporterDto> findAllById(Long id){
+        return transporterRepository.findById(id)
+                .stream()
+                .map(TransporterMapper::toDto)
+                .collect(Collectors.toList());
+    }
+
     public List<TransporterDto> findAll() {
         return transporterRepository.findAll()
                 .stream()

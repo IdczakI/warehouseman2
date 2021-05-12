@@ -1,17 +1,35 @@
 package pl.idczak.warehouseman2.devivery;
 
-import java.time.LocalDateTime;
 
 public class DeliveryDto {
 
     private Long id;
-    private LocalDateTime date;
+    private String date;
     private Long palletsQuantity;
     private Long itemsQuantity;
     private boolean departure;
     private String item;
     private String transporter;
     private String warehouseman;
+    private Long itemId;
+    private Long warehousemanId;
+    private Long transporterId;
+
+    public Long getWarehousemanId() {
+        return warehousemanId;
+    }
+
+    public void setWarehousemanId(Long warehousemanId) {
+        this.warehousemanId = warehousemanId;
+    }
+
+    public Long getTransporterId() {
+        return transporterId;
+    }
+
+    public void setTransporterId(Long transporterId) {
+        this.transporterId = transporterId;
+    }
 
     public Long getId() {
         return id;
@@ -21,11 +39,11 @@ public class DeliveryDto {
         this.id = id;
     }
 
-    public LocalDateTime getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -75,5 +93,13 @@ public class DeliveryDto {
 
     public void setWarehouseman(String warehouseman) {
         this.warehouseman = warehouseman;
+    }
+
+    public Long getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
     }
 }

@@ -27,4 +27,11 @@ public class WarehousemanService {
                 .map(WarehousemanMapper::toDto)
                 .collect(Collectors.toList());
     }
+
+    List<WarehousemanDto> findAllById(Long id){
+        return warehousemanRepository.findAllById(id)
+                .stream()
+                .map(WarehousemanMapper::toDto)
+                .collect(Collectors.toList());
+    }
 }

@@ -9,6 +9,7 @@ import pl.idczak.warehouseman2.warehouseman.Warehouseman;
 import pl.idczak.warehouseman2.warehouseman.WarehousemanRepository;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 @Service
@@ -29,17 +30,22 @@ public class DeliveryMapper {
     DeliveryDto toDto(Delivery entity) {
         DeliveryDto dto = new DeliveryDto();
         dto.setId(entity.getId());
-        dto.setDate(entity.getDate());
+        dto.setDate(entity.getDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd | HH:mm")));
         dto.setPalletsQuantity(entity.getPalletsQuantity());
         dto.setDeparture(entity.isDeparture());
         if (entity.getItem() != null){
             dto.setItemsQuantity(entity.getPalletsQuantity() * entity.getItem().getQuantityOnOnePallet());
             dto.setItem(entity.getItem().getName());
+            dto.setItemId(entity.getItem().getId());
         }
-        if (entity.getTransporter() != null)
+        if (entity.getTransporter() != null) {
             dto.setTransporter(entity.getTransporter().getName());
-        if (entity.getWarehouseman() != null)
+            dto.setTransporterId(entity.getTransporter().getId());
+        }
+        if (entity.getWarehouseman() != null) {
             dto.setWarehouseman(entity.getWarehouseman().getName());
+            dto.setWarehousemanId(entity.getWarehouseman().getId());
+        }
         return dto;
     }
 

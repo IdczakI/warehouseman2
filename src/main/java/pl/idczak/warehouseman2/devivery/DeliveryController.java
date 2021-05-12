@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.idczak.warehouseman2.IncorrectDataException;
+import pl.idczak.warehouseman2.item.ItemDto;
 import pl.idczak.warehouseman2.item.ItemService;
 import pl.idczak.warehouseman2.transporter.TransporterService;
 import pl.idczak.warehouseman2.warehouseman.WarehousemanService;
@@ -53,14 +54,35 @@ public class DeliveryController {
         return "delivery/take_delivery";
     }
 
+    @GetMapping("/departures/create")
+    public String mapCreateDeparturePage(Model model){
+        model.addAttribute("warehousemen", warehousemanService.findAll());
+        model.addAttribute("items", itemService.findAll());
+        model.addAttribute("transporters", transporterService.findAll());
+        return "departure/create_departure";
+    }
+
     @PostMapping("deliveries")
-    public String save(@ModelAttribute DeliveryDto deliveryDto, Model model){
+    public String saveDelivery(@ModelAttribute DeliveryDto deliveryDto, Model model){
         try {
-            DeliveryDto dto = deliveryService.saveDelivery(deliveryDto);
+            ItemDto itemDto = itemService.updateItemDelivery(deliveryDto);
+            DeliveryDto dto = deliveryService.save(deliveryDto);
         }catch (IncorrectDataException e){
             model.addAttribute("message", e.getMessage());
         }
         model.addAttribute("deliveries", deliveryService.findAllDeliveries());
         return "delivery/deliveries";
+    }
+
+    @PostMapping("departures")
+    public String saveDeparture(@ModelAttribute DeliveryDto deliveryDto, Model model){
+        try {
+            ItemDto itemDto = itemService.updateItemDeparture(deliveryDto);
+            DeliveryDto dto = deliveryService.save(deliveryDto);
+        }catch (IncorrectDataException e){
+            model.addAttribute("message", e.getMessage());
+        }
+        model.addAttribute("departures", deliveryService.findAllDepartures());
+        return "departure/departures";
     }
 }

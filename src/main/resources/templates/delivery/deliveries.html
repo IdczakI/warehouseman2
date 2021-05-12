@@ -18,11 +18,13 @@
 <br>
 <div class="text-center">
     <a href="../item/items.html" type="button" class="btn btn-primary" th:href="@{/items}">Items</a>
-    <a href="../departure/departures.html" type="button" class="btn btn-danger" th:href="@{/departures}">Departure History</a>
+    <a href="../departure/departures.html" type="button" class="btn btn-danger" th:href="@{/departures}">Departures</a>
     <a href="../transporter/transporters.html" type="button" class="btn btn-warning" th:href="@{/transporters}">Transporters</a>
-    <a href="../warehousemen.html" type="button" class="btn btn-info" th:href="@{/warehousemen}">Warehousemen</a>
+    <a href="../warehouseman/warehousemen.html" type="button" class="btn btn-info" th:href="@{/warehousemen}">Warehousemen</a>
 </div>
-<br>
+<div class="text-danger">
+    <p class="text-center" th:text="${message}"></p>
+</div>
 <div>
     <h3 class="text-center">History of Deliveries</h3>
 </div>
@@ -49,35 +51,56 @@
         <tr th:each="delivery, state : ${deliveries}" th:object="${delivery}">
             <th scope="row" th:text="${state.count}">1</th>
             <td th:text="*{date}">2020-02-02T16:00</td>
-            <td th:text="*{item}">Item 1</td>
+            <td>
+                <a href="../item/items.html" type="text" th:text="*{item}" th:href="@{|/items/*{itemId}|}">Item 1</a>
+            </td>
             <td th:text="*{itemsQuantity}">500</td>
             <td th:text="*{palletsQuantity}">10</td>
-            <td th:text="*{transporter}">ZZ</td>
-            <td th:text="*{warehouseman}">XXX</td>
+            <td>
+                <a href="../transporter/transporters.html" type="text" th:text="*{transporter}"
+                   th:href="@{|/transporters/*{transporterId}|}">Transporter 1</a>
+            </td>
+            <td>
+                <a href="../warehouseman/warehousemen.html" type="text" th:text="*{warehouseman}"
+                   th:href="@{|/warehousemen/*{warehousemanId}|}">Warehouseman 1</a>
+            </td>
         </tr>
         <tr>
             <th scope="row">2</th>
             <td>2020-02-02T16:00</td>
-            <td>Item 2</td>
+            <td>
+                <a href="../item/items.html" type="text">Item 2</a>
+            </td>
             <td>100</td>
             <td>10</td>
-            <td>ZZ</td>
-            <td>ZZ</td>
+            <td>
+                <a href="../transporter/transporters.html" type="text">Transporter 2</a>
+            </td>
+            <td>
+                <a href="../warehousemen.html" type="text">Warehouseman 2</a>
+            </td>
         </tr>
         <tr>
             <th scope="row">3</th>
             <td>2020-02-02T16:00</td>
-            <td>Item 3</td>
+            <td>
+                <a href="../item/items.html" type="text">Item 3</a>
+            </td>
             <td>100</td>
             <td>10</td>
-            <td>ZZ</td>
-            <td>ZZ</td>
+            <td>
+                <a href="../transporter/transporters.html" type="text">Transporter 3</a>
+            </td>
+            <td>
+                <a href="../warehousemen.html" type="text">Warehouseman 3</a>
+            </td>
+            </td>
         </tr>
         </tbody>
     </table>
 </div>
 <div class="d-grid gap-2 col-2 mx-auto">
-    <a href="../delivery/add_delivery.html" type="button" class="btn btn-success" th:href="@{/deliveries/take}">
+    <a href="../delivery/take_delivery.html" type="button" class="btn btn-success" th:href="@{/deliveries/take}">
         Take Delivery
     </a>
 </div>
