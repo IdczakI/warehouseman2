@@ -103,4 +103,12 @@ public class ItemService {
         itemEntity.orElseThrow(() -> new IncorrectDataException("There is no such Item"));
         return itemEntity.get();
     }
+
+    void deleteById(Long id) {
+        Optional<Item> itemOptional = itemRepository.findById(id);
+        itemOptional.orElseThrow(() -> new IncorrectDataException("There is no such Item"));
+        if (!itemOptional.get().getDeliveries().isEmpty())
+            throw new IncorrectDataException("You cannot delete an Item that has already been delivered");
+        itemRepository.deleteById(id);
+    }
 }

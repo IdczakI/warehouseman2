@@ -70,4 +70,15 @@ public class TransporterController {
             model.addAttribute("transporters", dtoList);
         return "transporter/transporters";
     }
+
+    @PostMapping("/delete")
+    public String delete(@RequestParam Long id, Model model){
+        try {
+            transporterService.deleteById(id);
+        } catch (IncorrectDataException e){
+            model.addAttribute("message", e.getMessage());
+        }
+        model.addAttribute("transporters", transporterService.findAll());
+        return "transporter/transporters";
+    }
 }

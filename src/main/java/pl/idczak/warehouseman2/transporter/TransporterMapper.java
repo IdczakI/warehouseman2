@@ -10,6 +10,7 @@ public class TransporterMapper {
         dto.setLastName(entity.getLastName());
         dto.setCompany(entity.getCompany());
         dto.setVehicleNumber(entity.getVehicleNumber());
+        dto.setOperated(!entity.getDeliveries().isEmpty());
         return dto;
     }
 

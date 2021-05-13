@@ -15,13 +15,14 @@
             <h1 class="display-3">WAREHOUSEMAN 2.0</h1><br><br><br>
         </div>
     </div>
-</div><br>
+</div>
+<br>
 <div class="text-center">
     <a href="../item/items.html" type="button" class="btn btn-primary" th:href="@{/items}">Items</a>
     <a href="../delivery/deliveries.html" type="button" class="btn btn-success" th:href="@{/deliveries}">Deliveries</a>
     <a href="../departure/departures.html" type="button" class="btn btn-danger" th:href="@{/departures}">Departures</a>
     <a href="../warehouseman/warehousemen.html" type="button" class="btn btn-info" th:href="@{/warehousemen}">Warehousemen</a>
-  </div>
+</div>
 <div class="text-danger">
     <p class="text-center" th:text="${message}"></p>
 </div>
@@ -56,8 +57,12 @@
             <td th:text="*{company}">Company 1</td>
             <td th:text="*{vehicleNumber}">XX 5000</td>
             <td>
-                <a href="../transporter/edit_transporter.html" type="button" class="btn btn-warning"
-                   th:href="@{|/transporters/edit/*{id}|}">Edit</a>
+                <form action="#" th:action="@{/transporters/delete}" method="post">
+                    <a href="../transporter/edit_transporter.html" type="button" class="btn btn-warning"
+                       th:href="@{|/transporters/edit/*{id}|}">Edit</a>
+                    <input th:unless="*{operated}" type="hidden" name="id" th:value="*{id}">
+                    <button class="btn btn-danger" type="submit" th:unless="*{operated}">Delete</button>
+                </form>
             </td>
         </tr>
         <tr>

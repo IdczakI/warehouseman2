@@ -70,4 +70,16 @@ public class ItemController {
             model.addAttribute("items", dtoList);
         return "item/items";
     }
+
+    @PostMapping("/delete")
+    public String delete(@RequestParam Long id, Model model) {
+        try {
+            itemService.deleteById(id);
+        } catch (IncorrectDataException e) {
+            model.addAttribute("message", e.getMessage());
+        }
+        model.addAttribute("items", itemService.findAll());
+        return "item/items";
+    }
 }
+

@@ -17,7 +17,7 @@ public class Item {
     private String description;
     private Long quantityOnOnePallet;
     private Long pallets;
-    @OneToMany(mappedBy = "item")
+    @OneToMany(mappedBy = "item", fetch = FetchType.EAGER)
     private List<Delivery> deliveries = new ArrayList<>();
 
     public Long getId() {

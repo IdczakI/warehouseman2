@@ -10,6 +10,7 @@ public class ItemMapper {
         dto.setQuantityOnOnePallet(entity.getQuantityOnOnePallet());
         dto.setPallets(entity.getPallets());
         dto.setAvailability(entity.getQuantityOnOnePallet() * entity.getPallets());
+        dto.setOperated(!entity.getDeliveries().isEmpty());
         return dto;
     }
 

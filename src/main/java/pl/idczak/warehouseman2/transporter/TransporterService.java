@@ -62,4 +62,12 @@ public class TransporterService {
         Transporter savedTransporter = transporterRepository.save(transporterEntity);
         return TransporterMapper.toDto(savedTransporter);
     }
+
+    void deleteById(Long id){
+        Optional<Transporter> transporterOptional = transporterRepository.findById(id);
+        transporterOptional.orElseThrow(() -> new IncorrectDataException("There is no such of Transporter"));
+        if (!transporterOptional.get().getDeliveries().isEmpty())
+            throw new IncorrectDataException("You cannot delete a Transporter that has been involved in a delivery");
+        transporterRepository.deleteById(id);
+    }
 }

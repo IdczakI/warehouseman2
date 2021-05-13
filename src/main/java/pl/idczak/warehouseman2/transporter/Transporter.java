@@ -18,7 +18,7 @@ public class Transporter {
     private String lastName;
     private String company;
     private String vehicleNumber;
-    @OneToMany(mappedBy = "transporter")
+    @OneToMany(mappedBy = "transporter", fetch = FetchType.EAGER)
     private List<Delivery> deliveries = new ArrayList<>();
 
     public Long getId() {

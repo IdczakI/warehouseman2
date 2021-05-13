@@ -8,7 +8,15 @@ public class ItemDto {
     private String description;
     private Long availability;
     private Long pallets;
+    private boolean operated;
 
+    public boolean isOperated() {
+        return operated;
+    }
+
+    public void setOperated(boolean operated) {
+        this.operated = operated;
+    }
 
     public Long getPallets() {
         return pallets;

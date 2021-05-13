@@ -8,6 +8,15 @@ public class TransporterDto {
     private String lastName;
     private String company;
     private String vehicleNumber;
+    private boolean operated;
+
+    public boolean isOperated() {
+        return operated;
+    }
+
+    public void setOperated(boolean operated) {
+        this.operated = operated;
+    }
 
     public Long getId() {
         return id;
