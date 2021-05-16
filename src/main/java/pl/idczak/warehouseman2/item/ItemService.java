@@ -44,9 +44,10 @@ public class ItemService {
     }
 
     ItemDto saveItem(ItemDto itemDto) {
-        if (itemDto.getName() == null || itemDto.getQuantityOnOnePallet() == null ||
-                "".equals(itemDto.getName()) || itemDto.getQuantityOnOnePallet() <= 0)
-            throw new IncorrectDataException("You must fill all required fields");
+        if (itemDto.getName() == null || "".equals(itemDto.getName()))
+            throw new IncorrectDataException("You must enter a name of an Item");
+        if (itemDto.getQuantityOnOnePallet() == null  || itemDto.getQuantityOnOnePallet() <= 0)
+            throw new IncorrectDataException("You must enter correct number");
         Optional<Item> itemByName = itemRepository.findByNameIgnoreCase(itemDto.getName());
         itemByName.ifPresent(item -> {
             throw new IncorrectDataException("You cannot duplicate item names - " + itemDto.getName());
@@ -55,8 +56,8 @@ public class ItemService {
     }
 
     ItemDto editItem(ItemDto itemDto) {
-        if (itemDto.getQuantityOnOnePallet() == null)
-            throw new IncorrectDataException("You must fill all required fields");
+        if (itemDto.getQuantityOnOnePallet() == null || itemDto.getQuantityOnOnePallet() <= 0)
+            throw new IncorrectDataException("You must enter correct number");
         Optional<Item> itemById = itemRepository.findById(itemDto.getId());
         itemById.orElseThrow(() -> new IncorrectDataException("Incorrect ID"));
         return saveAndReturn(itemDto);
@@ -80,14 +81,14 @@ public class ItemService {
         Item itemEntity = getItemOrThrowException(deliveryDto);
         Long palletsAvailability = itemEntity.getPallets();
         if (deliveryDto.getPalletsQuantity() > palletsAvailability && palletsAvailability == 0)
-            throw new IncorrectDataException("There are no pallets with the Item " +
-                    itemEntity.getName() + " in the Warehouse");
+            throw new IncorrectDataException("There are no pallets with the " +
+                    itemEntity.getName() + " Item in the Warehouse");
         if (deliveryDto.getPalletsQuantity() > palletsAvailability && palletsAvailability == 1)
-            throw new IncorrectDataException("There is only " + palletsAvailability + " pallet with the Item " +
-                    itemEntity.getName() + " in the Warehouse");
+            throw new IncorrectDataException("There is only " + palletsAvailability + " pallet with the " +
+                    itemEntity.getName() + " Item in the Warehouse");
         if (deliveryDto.getPalletsQuantity() > palletsAvailability)
-            throw new IncorrectDataException("There are only " + palletsAvailability + " pallets with the Item " +
-                    itemEntity.getName() + " in the Warehouse");
+            throw new IncorrectDataException("There are only " + palletsAvailability + " pallets with the " +
+                    itemEntity.getName() + " Item in the Warehouse");
         itemEntity.setPallets(palletsAvailability - deliveryDto.getPalletsQuantity());
         return ItemMapper.toDto(itemEntity);
     }

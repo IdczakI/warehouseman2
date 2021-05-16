@@ -19,6 +19,7 @@ public class DeliveryController {
     private ItemService itemService;
     private WarehousemanService warehousemanService;
     private TransporterService transporterService;
+    private String errorMessage;
 
     public DeliveryController(DeliveryService deliveryService, ItemService itemService,
                               WarehousemanService warehousemanService, TransporterService transporterService) {
@@ -30,6 +31,7 @@ public class DeliveryController {
 
     @GetMapping("/deliveries")
     public String findAllDeliveries(Model model, @RequestParam(required = false) String search) {
+        errorMessage = null;
         if (search == null || "".equals(search))
             model.addAttribute("deliveries", deliveryService.findAllDeliveries());
         else
@@ -39,6 +41,7 @@ public class DeliveryController {
 
     @GetMapping("/departures")
     public String findAllDepartures(Model model, @RequestParam(required = false) String search) {
+        errorMessage = null;
         if (search == null || "".equals(search))
             model.addAttribute("departures", deliveryService.findAllDepartures());
         else
@@ -48,6 +51,7 @@ public class DeliveryController {
 
     @GetMapping("/deliveries/take")
     public String mapTakeDeliveryPage(Model model){
+        model.addAttribute("message", errorMessage);
         model.addAttribute("warehousemen", warehousemanService.findAll());
         model.addAttribute("items", itemService.findAll());
         model.addAttribute("transporters", transporterService.findAll());
@@ -56,6 +60,7 @@ public class DeliveryController {
 
     @GetMapping("/departures/create")
     public String mapCreateDeparturePage(Model model){
+        model.addAttribute("message", errorMessage);
         model.addAttribute("warehousemen", warehousemanService.findAll());
         model.addAttribute("items", itemService.findAll());
         model.addAttribute("transporters", transporterService.findAll());
@@ -69,8 +74,11 @@ public class DeliveryController {
             DeliveryDto dto = deliveryService.save(deliveryDto);
         }catch (IncorrectDataException e){
             model.addAttribute("message", e.getMessage());
+            errorMessage = e.getMessage();
+            return "redirect:/deliveries/take";
         }
         model.addAttribute("deliveries", deliveryService.findAllDeliveries());
+        errorMessage = null;
         return "delivery/deliveries";
     }
 
@@ -81,8 +89,11 @@ public class DeliveryController {
             DeliveryDto dto = deliveryService.save(deliveryDto);
         }catch (IncorrectDataException e){
             model.addAttribute("message", e.getMessage());
+            errorMessage = e.getMessage();
+            return "redirect:/departures/create";
         }
         model.addAttribute("departures", deliveryService.findAllDepartures());
+        errorMessage = null;
         return "departure/departures";
     }
 }

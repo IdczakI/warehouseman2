@@ -13,6 +13,7 @@ import java.util.Optional;
 public class ItemController {
 
     private ItemService itemService;
+    private String errorMessage;
 
     public ItemController(ItemService itemService) {
         this.itemService = itemService;
@@ -20,6 +21,7 @@ public class ItemController {
 
     @GetMapping("")
     public String findItems(Model model, @RequestParam(required = false) String name) {
+        errorMessage = null;
         if (name == null || "".equals(name))
             model.addAttribute("items", itemService.findAll());
         else
@@ -28,12 +30,14 @@ public class ItemController {
     }
 
     @GetMapping("/add")
-    public String mapAddPage() {
+    public String mapAddPage(Model model) {
+        model.addAttribute("message", errorMessage);
         return "item/add_item";
     }
 
     @GetMapping("/edit/{id}")
     public String findItemToEdit(@PathVariable Long id, Model model) {
+        errorMessage = null;
         Optional<ItemDto> itemDto = itemService.findById(id);
         itemDto.ifPresent(i -> model.addAttribute("item", i));
         return "item/edit_item";
@@ -45,8 +49,11 @@ public class ItemController {
             ItemDto dto = itemService.saveItem(itemDto);
         } catch (IncorrectDataException e) {
             model.addAttribute("message", e.getMessage());
+            errorMessage = e.getMessage();
+            return "redirect:/items/add";
         }
         model.addAttribute("items", itemService.findAll());
+        errorMessage = null;
         return "item/items";
     }
 
@@ -63,6 +70,7 @@ public class ItemController {
 
     @GetMapping("/{id}")
     public String takeALook(@PathVariable Long id, Model model) {
+        errorMessage = null;
         List<ItemDto> dtoList = itemService.findALlById(id);
         if (dtoList.isEmpty())
             model.addAttribute("message", "There is no such of Item");

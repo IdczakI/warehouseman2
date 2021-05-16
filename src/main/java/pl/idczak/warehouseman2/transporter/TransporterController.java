@@ -13,6 +13,7 @@ import java.util.Optional;
 public class TransporterController {
 
     private TransporterService transporterService;
+    private String errorMessage;
 
     public TransporterController(TransporterService transporterService) {
         this.transporterService = transporterService;
@@ -20,6 +21,7 @@ public class TransporterController {
 
     @GetMapping("")
     public String findTransporters(Model model, @RequestParam(required = false) String search) {
+        errorMessage = null;
         if (search == null || "".equals(search))
             model.addAttribute("transporters", transporterService.findAll());
         else
@@ -28,12 +30,14 @@ public class TransporterController {
     }
 
     @GetMapping("/add")
-    public String mapAddPage(){
+    public String mapAddPage(Model model){
+        model.addAttribute("message", errorMessage);
         return "transporter/add_transporter";
     }
 
     @GetMapping("/edit/{id}")
     public String findTransporterToEdit(@PathVariable Long id, Model model){
+        errorMessage = null;
         Optional<TransporterDto> transporterDto = transporterService.findById(id);
         transporterDto.ifPresent(t -> model.addAttribute("transporter", t));
         return "transporter/edit_transporter";
@@ -45,8 +49,11 @@ public class TransporterController {
             TransporterDto dto = transporterService.saveTransporter(transporterDto);
         }catch (IncorrectDataException e){
             model.addAttribute("message", e.getMessage());
+            errorMessage = e.getMessage();
+            return "redirect:/transporters/add";
         }
         model.addAttribute("transporters", transporterService.findAll());
+        errorMessage = null;
         return "transporter/transporters";
     }
 
@@ -63,6 +70,7 @@ public class TransporterController {
 
     @GetMapping("/{id}")
     public String takeALook(@PathVariable Long id, Model model){
+        errorMessage = null;
         List<TransporterDto> dtoList = transporterService.findAllById(id);
         if (dtoList.isEmpty())
             model.addAttribute("message", "There is no such Transporter");
