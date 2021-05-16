@@ -10,13 +10,4 @@ public class WarehousemanMapper {
         dto.setLastName(entity.getLastName());
         return dto;
     }
-
-    static Warehouseman toEntity(WarehousemanDto dto){
-        Warehouseman entity = new Warehouseman();
-        entity.setId(dto.getId());
-        entity.setName(dto.getName());
-        entity.setFirstName(dto.getFirstName());
-        entity.setLastName(dto.getLastName());
-        return entity;
-    }
 }

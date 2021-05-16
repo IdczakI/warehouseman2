@@ -10,10 +10,10 @@ values (1, 'H&H', 'Brian', 'House', 'House&House', 'XX YYWQY'),
        (2, 'VT', 'Jerry', 'Value', 'Value Transports', 'QQ WWWQE'),
        (3, 'TC', 'John', 'Smith', 'Transport Company', 'XX ZZXXZ');
 
-insert into warehouseman(id, name, first_name, last_name)
-values (1, '110A', 'John', 'Example'),
-       (2, '120A', 'Maria', 'Smith'),
-       (3, '130A', 'Daniel', 'Beer');
+insert into warehouseman(id, name, first_name, last_name, password)
+values (1, '110A', 'John', 'Example', '{noop}123'),
+       (2, '120A', 'Maria', 'Smith','{noop}123'),
+       (3, '130A', 'Daniel', 'Beer','{bcrypt}$2a$10$hD7XOspIHd09GDbMwbapVO/oas9NB/2eT3VZmhhSI7TZ9xUCbrHCm');
 
 insert into delivery(id, date, pallets_quantity, departure, item_id, transporter_id, warehouseman_id)
 values (1, '2021-02-02 16:00:00', 20, false, 1, 1, 1),
@@ -23,4 +23,12 @@ values (1, '2021-02-02 16:00:00', 20, false, 1, 1, 1),
        (5, '2021-01-06 11:00:00', 12, true, 2, 3, 1),
        (6, '2021-02-07 12:12:00', 12, true, 3, 1, 2),
        (7, '2021-02-07 15:15:23', 1, false, 4, 1, 2);
+
+insert into user_role(id, role, description)
+values (1, 'USER_ROLE', 'default');
+
+insert into roles(user_id, role_id)
+values (1, 1),
+       (2, 1),
+       (3, 1);
 

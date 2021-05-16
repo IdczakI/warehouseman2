@@ -33,12 +33,8 @@
     <input type="hidden" name="departure" value="true">
     <div class="col-md-6">
         <label for="warehouseman">ID of the Warehouseman</label>
-        <select class="form-select" name="warehouseman" id="warehouseman" required>
-            <option selected></option>
-            <option value="1" th:each="warehouseman : ${warehousemen}"
-                    th:text="${warehouseman.name}" th:value="${warehouseman.name}">Warehouseman
-            </option>
-        </select>
+        <span id="warehouseman" class="form-control" th:name="warehouseman" th:text="${warehouseman}">123Q</span>
+        <input type="hidden" name="warehouseman" th:value="${warehouseman}">
     </div>
     <div class="col-md-6">
         <label for="transporter">ID of the Transporter</label>
@@ -62,7 +58,6 @@
         <label for="pallets">Quantity of Pallets with Items</label>
         <input type="number" min="1" step="1" class="form-control"
                name="palletsQuantity" value="1" id="pallets" required>
-    </div>
     </div>
     <div class="col-12 text-center">
         <button class="btn btn-warning" type="submit">Create Departure</button>

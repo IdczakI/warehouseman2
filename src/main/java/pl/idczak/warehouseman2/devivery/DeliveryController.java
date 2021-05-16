@@ -52,7 +52,7 @@ public class DeliveryController {
     @GetMapping("/deliveries/take")
     public String mapTakeDeliveryPage(Model model){
         model.addAttribute("message", errorMessage);
-        model.addAttribute("warehousemen", warehousemanService.findAll());
+        model.addAttribute("warehouseman", warehousemanService.getLoggedInWarehouseman());
         model.addAttribute("items", itemService.findAll());
         model.addAttribute("transporters", transporterService.findAll());
         return "delivery/take_delivery";
@@ -61,7 +61,7 @@ public class DeliveryController {
     @GetMapping("/departures/create")
     public String mapCreateDeparturePage(Model model){
         model.addAttribute("message", errorMessage);
-        model.addAttribute("warehousemen", warehousemanService.findAll());
+        model.addAttribute("warehouseman", warehousemanService.getLoggedInWarehouseman());
         model.addAttribute("items", itemService.findAll());
         model.addAttribute("transporters", transporterService.findAll());
         return "departure/create_departure";

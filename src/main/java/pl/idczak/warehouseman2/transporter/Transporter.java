@@ -12,7 +12,7 @@ public class Transporter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String name;
     private String firstName;
     private String lastName;

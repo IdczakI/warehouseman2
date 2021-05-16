@@ -25,6 +25,7 @@ public class WarehousemanController {
             model.addAttribute("warehousemen", warehousemanService.findAll());
         else
             model.addAttribute("warehousemen", warehousemanService.findAllByBase(search));
+        model.addAttribute("loggedInUser", warehousemanService.getLoggedInWarehouseman());
         return "/warehouseman/warehousemen";
     }
 
@@ -35,6 +36,7 @@ public class WarehousemanController {
             model.addAttribute("message", "There is no such Warehouseman");
         else
             model.addAttribute("warehousemen", dtoList);
+        model.addAttribute("loggedInUser", warehousemanService.getLoggedInWarehouseman());
         return "/warehouseman/warehousemen";
     }
 }

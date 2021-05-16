@@ -17,17 +17,23 @@
     </div>
 </div>
 <br>
+<div class="container">
+    <h5 class="text-center" th:text="|You are logged in as Warehouseman with ID ${loggedInUser}|">
+        You are logged in as Warehouseman with ID 110A
+    </h5>
+</div>
 <div class="text-center">
     <a href="../item/items.html" type="button" class="btn btn-primary" th:href="@{/items}">Items</a>
     <a href="../delivery/deliveries.html" type="button" class="btn btn-success" th:href="@{/deliveries}">Deliveries</a>
     <a href="../departure/departures.html" type="button" class="btn btn-danger" th:href="@{/departures}">Departures</a>
     <a href="../transporter/transporters.html" type="button" class="btn btn-warning" th:href="@{/transporters}">Transporters</a>
+    <a href="#" type="button" class="btn btn-dark" th:href="@{/logout}">Logout the Warehouseman</a>
 </div>
 <div class="text-danger">
     <p class="text-center" th:text="${message}"></p>
 </div>
 <div>
-    <h3 class="text-center">Warehousemen</h3>
+    <h3 class="text-center">List of all Warehousemen</h3>
 </div>
 <div class="col-4 offset-4">
     <form class="d-flex" action="#" th:action="@{/warehousemen}" method="get">
@@ -63,7 +69,7 @@
             <td>000q</td>
             <td>John</td>
             <td>Perry</td>
-         </tr>
+        </tr>
         </tbody>
     </table>
 </div>

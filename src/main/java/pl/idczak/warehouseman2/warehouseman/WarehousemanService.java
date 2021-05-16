@@ -1,5 +1,7 @@
 package pl.idczak.warehouseman2.warehouseman;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,24 +16,28 @@ public class WarehousemanService {
         this.warehousemanRepository = warehousemanRepository;
     }
 
-   public List<WarehousemanDto> findAll(){
+    public List<WarehousemanDto> findAll() {
         return warehousemanRepository.findAll()
                 .stream()
                 .map(WarehousemanMapper::toDto)
                 .collect(Collectors.toList());
     }
 
-    List<WarehousemanDto> findAllByBase(String name){
+    List<WarehousemanDto> findAllByBase(String name) {
         return warehousemanRepository.findAllByBase(name)
                 .stream()
                 .map(WarehousemanMapper::toDto)
                 .collect(Collectors.toList());
     }
 
-    List<WarehousemanDto> findAllById(Long id){
+    List<WarehousemanDto> findAllById(Long id) {
         return warehousemanRepository.findAllById(id)
                 .stream()
                 .map(WarehousemanMapper::toDto)
                 .collect(Collectors.toList());
+    }
+
+    public String getLoggedInWarehouseman() {
+        return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 }
