@@ -1,22 +1,22 @@
-#Warehouseman 2.0
+# Warehouseman 2.0
 The application is an improved version of warehouseman 1.0.
 This time, it was created as a web application 
 using Spring MVC, Data, Thymeleaf.
 
 The application allows you to manage the warehouse.
-###Login data
+### Login data
 - ID: 110A
 - password: 000
 
 user = warehouseman
 
-##General info
+## General info
 After logging in, a page with information about 
 items in stock appears.
 Use the colored buttons to move between pages.
 Their description is below.
 
-###Items in warehouse
+### Items in warehouse
 It contains information about the name and description
 of the item, as well as the quantity of items per one pallet.
 (The quantity of items on the pallet is constant and
@@ -33,18 +33,18 @@ The item you created can be deleted as long as it is
 not already listed in the deliveries and departures history.
 You can also search for an item by its name.
 
-###Transporters 
+### Transporters 
 This section gives you an overview of the transporters.
 The transporter ID is unique, therefore creating new,
 editing and deleting transporters is analogous to the items 
 section.
 
-###Warehousemen
+### Warehousemen
 Here you can view the list of warehousemen 
 (application users) working in the warehouse.
 There is also the logout button here.
 
-###Deliveries and Departures
+### Deliveries and Departures
 These are the most important sections of the application.
 Here is the history of all deliveries or departures.
 To collect delivery or create departure, click on the 
@@ -54,11 +54,11 @@ the number of pallets.
 The warehouseman ID matches the logged-in user.
 Selecting a transporter is optional.
 
-###Other info
+### Other info
 The application gets data from the data.sql file.
 The changes will be lost after restarting the application.
 
-##Technologies
+## Technologies
 - Java 11
 - Apache Maven
 - Spring Boot 2.4.5
