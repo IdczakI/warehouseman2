@@ -58,10 +58,12 @@
             <td th:text="*{vehicleNumber}">XX 5000</td>
             <td>
                 <form action="#" th:action="@{/transporters/delete}" method="post">
-                    <a href="../transporter/edit_transporter.html" type="button" class="btn btn-warning"
-                       th:href="@{|/transporters/edit/*{id}|}">Edit</a>
-                    <input th:unless="*{operated}" type="hidden" name="id" th:value="*{id}">
-                    <button class="btn btn-danger" type="submit" th:unless="*{operated}">Delete</button>
+                    <div class="btn-group" role="group">
+                        <a href="../transporter/edit_transporter.html" type="button" class="btn btn-warning"
+                           th:href="@{|/transporters/edit/*{id}|}">Edit</a>
+                        <input th:unless="*{operated}" type="hidden" name="id" th:value="*{id}">
+                        <button class="btn btn-danger" type="submit" th:unless="*{operated}">Delete</button>
+                    </div>
                 </form>
             </td>
         </tr>

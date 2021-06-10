@@ -27,7 +27,7 @@
     <p class="text-center" th:text="${message}"></p>
 </div>
 <div>
-    <h3 class="text-center">Items in warehouse</h3>
+    <h3 class="text-center">Items in Warehouse</h3>
 </div>
 <div class="col-4 offset-4">
     <form class="d-flex" action="#" th:action="@{/items}" method="get">
@@ -60,10 +60,12 @@
             <td th:text="*{availability}">500</td>
             <td>
                 <form action="#" th:action="@{/items/delete}" method="post">
-                    <a href="../item/edit_item.html" type="button" class="btn btn-primary"
-                       th:href="@{|/items/edit/*{id}|}">Edit</a>
-                    <input th:unless="*{operated}" type="hidden" name="id" th:value="*{id}">
-                    <button class="btn btn-danger" type="submit"  th:unless="*{operated}">Delete</button>
+                    <div class="btn-group" role="group">
+                        <a href="../item/edit_item.html" type="button" class="btn btn-primary"
+                           th:href="@{|/items/edit/*{id}|}">Edit</a>
+                        <input th:unless="*{operated}" type="hidden" name="id" th:value="*{id}">
+                        <button class="btn btn-danger" type="submit" th:unless="*{operated}">Delete</button>
+                    </div>
                 </form>
             </td>
         </tr>

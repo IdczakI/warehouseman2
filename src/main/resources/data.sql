@@ -1,9 +1,10 @@
 insert into item(id, name, description, quantity_on_one_pallet, pallets)
-values (1, 'Hiper product', 'this is the best description of hiper product', 50, 10),
+values (1, 'Hiper product', 'description of hiper product, description of hiper product, description of hiper product,' ||
+                            ' description of hiper product, description of hiper product,', 50, 10),
        (2, 'My super first product', 'this is my super product description', 100, 5),
-       (3, 'Galactic one', 'galactic description of galactic product', 75, 10),
+       (3, 'Galactic', 'galactic description of galactic product', 75, 10),
        (4, 'Special', 'Top Secret', 26, 1),
-       (5, 'Joker', 'one, two, Joker', 56, 0);
+       (5, 'Special2', 'one, two, Joker', 56, 0);
 
 insert into transporter(id, name, first_name, last_name, company, vehicle_number)
 values (1, 'H&H', 'Brian', 'House', 'House&House', 'XX YYWQY'),
@@ -11,9 +12,9 @@ values (1, 'H&H', 'Brian', 'House', 'House&House', 'XX YYWQY'),
        (3, 'TC', 'John', 'Smith', 'Transport Company', 'XX ZZXXZ');
 
 insert into warehouseman(id, name, first_name, last_name, password)
-values (1, '110A', 'John', 'Example', '{noop}123'),
-       (2, '120A', 'Maria', 'Smith','{noop}123'),
-       (3, '130A', 'Daniel', 'Beer','{bcrypt}$2a$10$hD7XOspIHd09GDbMwbapVO/oas9NB/2eT3VZmhhSI7TZ9xUCbrHCm');
+values (1, '110A', 'John', 'Example', '{bcrypt}$2a$10$Le2SyR3tWjjPec0jG1XJW.SxyEMpP6iCz5kozjEz0ZFHJ/Fs0fXTS'),
+       (2, '120A', 'Maria', 'Smith','{bcrypt}$2a$10$Le2SyR3tWjjPec0jG1XJW.SxyEMpP6iCz5kozjEz0ZFHJ/Fs0fXTS'),
+       (3, '130A', 'Daniel', 'Name','{bcrypt}$2a$10$Le2SyR3tWjjPec0jG1XJW.SxyEMpP6iCz5kozjEz0ZFHJ/Fs0fXTS');
 
 insert into delivery(id, date, pallets_quantity, departure, item_id, transporter_id, warehouseman_id)
 values (1, '2021-02-02 16:00:00', 20, false, 1, 1, 1),
