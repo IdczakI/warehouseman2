@@ -3,18 +3,25 @@ The application is an improved version of warehouseman 1.0.
 This time, it was created as a web application 
 using Spring MVC, Data, Thymeleaf.
 
-The application allows you to manage the warehouse.
+## What is Warehouseman application and why it was created?
+
+This application allows you to manage the warehouse, and more specifically in
+the register of items delivered to the warehouse and those leaving it.
+I created this project because I would like to make the job of a warehouse 
+manager easier, because I used to be one myself.
+
+## General info
 ### Login data
 - ID: 110A
 - password: 000
 
 user = warehouseman
 
-## General info
 After logging in, a page with information about 
 items in stock appears.
 Use the colored buttons to move between pages.
 Their description is below.
+
 
 ### Items in warehouse
 It contains information about the name and description
